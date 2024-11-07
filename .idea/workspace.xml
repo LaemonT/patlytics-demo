@@ -5,8 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aeef646f-c697-45c0-a42f-8518a88e2346" name="Changes" comment="First commit">
-      <change afterPath="$PROJECT_DIR$/.idea/prettier.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/patlytics_client/lib/analysis_page.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/patlytics_client/lib/home_page.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/patlytics_client/lib/routes/app_routes.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/patlytics_client/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/patlytics_client/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/patlytics_client/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/patlytics_client/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/patlytics_client/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/patlytics_client/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +58,7 @@
     "npm.start:debug (1).executor": "Run",
     "npm.start:debug.executor": "Run",
     "prettierjs.PrettierConfiguration.Package": "/Users/garylin/Documents/Patlytics_Takehome/patlytics-demo/patlytics-server/node_modules/prettier",
-    "settings.editor.selected.configurable": "settings.javascript.prettier",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
     "ts.external.directory.path": "/Users/garylin/Documents/Patlytics_Takehome/patlytics-demo/patlytics-server/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
@@ -113,6 +118,7 @@
       <workItem from="1730873657044" duration="31109000" />
       <workItem from="1730966017400" duration="318000" />
       <workItem from="1730966692900" duration="813000" />
+      <workItem from="1730973509034" duration="1656000" />
     </task>
     <task id="LOCAL-00001" summary="Add InfringementService">
       <option name="closed" value="true" />
