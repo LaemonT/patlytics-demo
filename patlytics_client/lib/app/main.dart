@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:patlytics_client/routes/app_routes.dart';
+import 'package:patlytics_client/app/di/injector.dart';
+import 'package:patlytics_client/app/routes/app_routes.dart';
 
-void main() {
+Future<void> main() async {
+  await AppInjector.init();
   runApp(const MyApp());
 }
 

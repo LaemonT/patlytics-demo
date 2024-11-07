@@ -6,8 +6,8 @@ import { UserQuery } from './model/user-query';
 export class InfringementController {
   constructor(private readonly infringementService: InfringementService) {}
 
-  @Get('infringementAnalysis')
-  findInfringementAnalysis(@Query() query: UserQuery) {
+  @Get('infringement')
+  findInfringement(@Query() query: UserQuery) {
     return this.infringementService.analyse(query.patentId, query.companyName);
   }
 }

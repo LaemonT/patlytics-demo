@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:patlytics_client/home_page.dart';
+import 'package:patlytics_client/feature/infringement/presentation/analysis_page.dart';
+import 'package:patlytics_client/feature/infringement/presentation/home_page.dart';
 
 class DefaultTransitionPage extends NoTransitionPage {
   const DefaultTransitionPage({required super.child});
@@ -63,7 +64,7 @@ class AnalysisRoute {
 
   final goRoute = GoRoute(
     path: _name,
-    builder: (BuildContext context, GoRouterState state) => const MyHomePage(),
+    builder: (BuildContext context, GoRouterState state) => const AnalysisPage(),
   );
 
   AnalysisRoute(String parentPath) : _path = '$parentPath/$_name';

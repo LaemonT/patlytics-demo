@@ -97,3 +97,31 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+
+
+# Architecture
+src
+├── modules
+│   ├── <domain>                 # Replace with actual domain name, e.g., "users", "products"
+│   │   ├── controllers           # Controllers handle incoming requests and return responses
+│   │   │   └── <domain>.controller.ts
+│   │   ├── services              # Core business logic for the domain
+│   │   │   └── <domain>.service.ts
+│   │   ├── repositories          # Database or JSON data access layer
+│   │   │   └── <domain>.repository.ts
+│   │   ├── entities              # Entities represent domain objects
+│   │   │   └── <domain>.entity.ts
+│   │   ├── dtos                  # Data Transfer Objects for validations
+│   │   │   └── <domain>.dto.ts
+│   │   └── domain.module.ts      # Domain module that combines all components
+├── common
+│   ├── configs                   # Configurations for various environments
+│   ├── exceptions                # Custom error handling classes
+│   ├── filters                   # Global or custom filters (e.g., HTTP exceptions)
+│   ├── interceptors              # Logging, caching, etc.
+│   ├── middleware                # Middleware for request processing
+│   └── utils                     # Reusable utility functions
+├── data                          # JSON files for data that some domains may require
+│   ├── <domain>.json             # Each domain can have its own JSON file
+├── app.module.ts                 # Main application module
+└── main.ts                       # Application entry point

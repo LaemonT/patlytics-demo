@@ -1,27 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
+    <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aeef646f-c697-45c0-a42f-8518a88e2346" name="Changes" comment="First commit">
-      <change afterPath="$PROJECT_DIR$/patlytics_client/lib/analysis_page.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/patlytics_client/lib/home_page.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/patlytics_client/lib/routes/app_routes.dart" afterDir="false" />
+    <list default="true" id="aeef646f-c697-45c0-a42f-8518a88e2346" name="Changes" comment="Architect the projects.">
+      <change afterPath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/patlytics_client/lib/app/di/injector.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/patlytics_client/lib/app/di/modules/api_client_module.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/patlytics_client/lib/app/di/modules/bloc_module.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/patlytics_client/lib/app/di/modules/repository_module.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/patlytics_client/lib/core/app_config.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/patlytics_client/lib/core/app_logger.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/patlytics_client/lib/core/bloc_observer.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/patlytics_client/lib/feature/infringement/data/datasource/remote/analysis_api.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/patlytics_client/lib/feature/infringement/data/datasource/remote/analysis_api.g.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/patlytics_client/lib/feature/infringement/data/model/infringement_analysis.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/patlytics_client/lib/feature/infringement/data/model/infringement_analysis.g.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/patlytics_client/lib/feature/infringement/data/repository/analysis_repo_imp.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/patlytics_client/lib/feature/infringement/domain/repository/analysis_repo.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/patlytics_client/lib/feature/infringement/presentation/bloc/analysis_bloc.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/patlytics_client/lib/feature/infringement/presentation/bloc/analysis_state.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/patlytics-demo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/patlytics-demo.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/patlytics_client/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/patlytics_client/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/patlytics-server/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/patlytics-server/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/patlytics-server/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/patlytics-server/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/patlytics-server/src/modules/infringement/infringement.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/patlytics-server/src/modules/infringement/infringement.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/patlytics_client/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/patlytics_client/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/patlytics_client/lib/analysis_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/patlytics_client/lib/feature/infringement/presentation/analysis_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/patlytics_client/lib/home_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/patlytics_client/lib/feature/infringement/presentation/home_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/patlytics_client/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/patlytics_client/lib/app/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/patlytics_client/lib/routes/app_routes.dart" beforeDir="false" afterPath="$PROJECT_DIR$/patlytics_client/lib/app/routes/app_routes.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/patlytics_client/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/patlytics_client/pubspec.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/patlytics_client/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/patlytics_client/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/patlytics_client/test/widget_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/patlytics_client/test/widget_test.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/patlytics_client/windows/runner/win32_window.h" beforeDir="false" afterPath="$PROJECT_DIR$/patlytics_client/windows/runner/win32_window.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="TypeScript File" />
+        <option value="Dart File" />
       </list>
     </option>
   </component>
@@ -38,15 +71,24 @@
   &quot;associatedIndex&quot;: 0
 }</component>
   <component name="ProjectId" id="2oSjzC5y7KTca32cCdpk1v60uUT" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Flutter.main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/garylin/Documents/Patlytics_Takehome/patlytics-demo",
+    "io.flutter.reload.alreadyRun": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/garylin/Documents/Patlytics_Takehome/patlytics-demo/patlytics_client/lib/feature/infringement/presentation/bloc",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.detected.package.tslint": "true",
@@ -58,28 +100,33 @@
     "npm.start:debug (1).executor": "Run",
     "npm.start:debug.executor": "Run",
     "prettierjs.PrettierConfiguration.Package": "/Users/garylin/Documents/Patlytics_Takehome/patlytics-demo/patlytics-server/node_modules/prettier",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+    "settings.editor.selected.configurable": "preferences.sourceCode.Dart",
+    "show.migrate.to.gradle.popup": "false",
     "ts.external.directory.path": "/Users/garylin/Documents/Patlytics_Takehome/patlytics-demo/patlytics-server/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/patlytics_client/lib/feature/infringement/presentation/bloc" />
+      <recent name="$PROJECT_DIR$/patlytics_client/lib/core" />
+      <recent name="$PROJECT_DIR$/patlytics_client/lib/app/di/interceptor" />
+      <recent name="$PROJECT_DIR$/patlytics_client/lib" />
       <recent name="$PROJECT_DIR$/src/shared" />
-      <recent name="$PROJECT_DIR$/src/core" />
-      <recent name="$PROJECT_DIR$/src/modules/infringement/infra/repositories" />
-      <recent name="$PROJECT_DIR$/src/modules/infringement/model" />
-      <recent name="$PROJECT_DIR$/src/modules/infringement/infra/data" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/modules/infringement/services" />
-      <recent name="$PROJECT_DIR$/src/shared/services" />
-      <recent name="$PROJECT_DIR$/src/core/services" />
-      <recent name="$PROJECT_DIR$/src/modules/infringement" />
-      <recent name="$PROJECT_DIR$/src/domain/infringement" />
+      <recent name="$PROJECT_DIR$/patlytics_client/lib/features/infringement/data/datasource" />
+      <recent name="$PROJECT_DIR$/patlytics_client/lib/features/infringement/domain/repository" />
+      <recent name="$PROJECT_DIR$/patlytics_client/lib/features/infringement/data/repository" />
+      <recent name="$PROJECT_DIR$/patlytics_client/lib/features/infringement/data" />
+      <recent name="$PROJECT_DIR$/patlytics_client/lib/features/infringement" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Flutter.main">
+    <configuration name="main" type="FlutterRunConfigurationType" factoryName="Flutter">
+      <option name="filePath" value="$PROJECT_DIR$/patlytics_client/lib/app/main.dart" />
+      <method v="2" />
+    </configuration>
     <configuration name="start:debug" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/patlytics-server/package.json" />
       <command value="run" />
@@ -92,12 +139,9 @@
       </envs>
       <method v="2" />
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="npm.start:debug" />
-        <item itemvalue="npm.start:debug" />
-      </list>
-    </recent_temporary>
+    <list>
+      <item itemvalue="Flutter.main" />
+    </list>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -198,6 +242,9 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/patlytics-server" />
+    </ignored-roots>
     <MESSAGE value="Add InfringementService" />
     <MESSAGE value="Add patent and company repositories and models." />
     <MESSAGE value="API is ready for debug" />
@@ -205,6 +252,7 @@
     <MESSAGE value="Add flutter project to the monorepo project." />
     <MESSAGE value="Change the NestJS project to use yarn instead." />
     <MESSAGE value="First commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="First commit" />
+    <MESSAGE value="Architect the projects." />
+    <option name="LAST_COMMIT_MESSAGE" value="Architect the projects." />
   </component>
 </project>
