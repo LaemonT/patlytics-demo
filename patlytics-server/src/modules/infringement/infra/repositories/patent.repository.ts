@@ -19,6 +19,7 @@ export class PatentRepository implements OnModuleInit {
   }
 
   findById(id: string) {
+    // The patent ID must exactly match the patent publication number
     return this.patents.find((item) => item.publication_number === id);
   }
 }

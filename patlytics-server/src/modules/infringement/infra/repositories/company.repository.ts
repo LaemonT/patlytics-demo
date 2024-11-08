@@ -1,6 +1,7 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { JsonAccessUtility } from 'src/core/utilities/json-access.utility';
 import { Company, CompanyProduct } from '../../model/company';
+import Fuse from 'fuse.js';
 
 @Injectable()
 export class CompanyRepository implements OnModuleInit {
@@ -19,6 +20,17 @@ export class CompanyRepository implements OnModuleInit {
   }
 
   findByName(name: string) {
-    return this.companies.find((item) => item.name === name);
+    // Fuzzy search for the company name to find the closest match
+    const fuse = new Fuse(this.companies, {
+      keys: ['name'],
+      threshold: 0.2,
+      shouldSort: true,
+    });
+    const result = fuse.search(name);
+    if (result.length > 0) {
+      return result[0].item;
+    } else {
+      return null;
+    }
   }
 }

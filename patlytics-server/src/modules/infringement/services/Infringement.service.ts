@@ -1,14 +1,16 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { GoogleAiService } from '../../../shared/services/google-ai.service';
 import { CompanyRepository } from '../infra/repositories/company.repository';
 import { PatentRepository } from '../infra/repositories/patent.repository';
 import { InfringementAnalysis } from '../model/infringement-analysis';
+import { AnalysisRepository } from '../infra/repositories/analysis.repository';
 
 @Injectable()
 export class InfringementService {
   constructor(
     private readonly patentRepo: PatentRepository,
     private readonly companyRepo: CompanyRepository,
+    private readonly analysisRepo: AnalysisRepository,
     private readonly googleAiService: GoogleAiService,
   ) {}
 
@@ -82,9 +84,26 @@ export class InfringementService {
     "Please determine relevance and potential infringement for company's product as shown in the following json object, and return the top two infringing products of the company:";
 
   async analyse(patentId: string, companyName: string) {
-    const patent = this.patentRepo.findById(patentId);
-    const company = this.companyRepo.findByName(companyName);
+    // Search for any existing analysis and return it immediately
+    const existingAnalysis = this.analysisRepo.searchAnalysis(
+      patentId,
+      companyName,
+    );
+    if (existingAnalysis != undefined) return existingAnalysis;
 
+    // Find the matching patent
+    const patent = this.patentRepo.findById(patentId);
+    if (patent == null) {
+      throw new BadRequestException('Patent ID does not exist');
+    }
+
+    // Find the matching company including their products
+    const company = this.companyRepo.findByName(companyName);
+    if (company == null) {
+      throw new BadRequestException('Company not found');
+    }
+
+    // Generate content from an AI service
     const jsonData = await this.googleAiService.generateContent(
       this.patentPrompt +
         JSON.stringify(patent) +
@@ -93,7 +112,11 @@ export class InfringementService {
         JSON.stringify(company),
       this.responseSchema,
     );
+    const analysis = JSON.parse(jsonData) as InfringementAnalysis;
 
-    return JSON.parse(jsonData) as InfringementAnalysis;
+    // Cache the result for later use to reduce frequent calls to the AI service
+    this.analysisRepo.saveAnalysis(analysis);
+
+    return analysis;
   }
 }
