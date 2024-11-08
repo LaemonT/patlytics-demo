@@ -22,9 +22,15 @@ class _AnalysisApi implements AnalysisApi {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<InfringementAnalysis> getInfringementsAnalysis() async {
+  Future<InfringementAnalysis> getInfringementsAnalysis(
+    String patentId,
+    String companyName,
+  ) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'patentId': patentId,
+      r'companyName': companyName,
+    };
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<InfringementAnalysis>(Options(

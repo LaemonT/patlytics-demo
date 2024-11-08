@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:patlytics_client/feature/infringement/presentation/analysis_page.dart';
 import 'package:patlytics_client/feature/infringement/presentation/home_page.dart';
+import 'package:patlytics_client/feature/infringement/presentation/result_page.dart';
 
 class DefaultTransitionPage extends NoTransitionPage {
   const DefaultTransitionPage({required super.child});
@@ -10,64 +10,33 @@ class DefaultTransitionPage extends NoTransitionPage {
 
 class AppRoute {
   static const rootPath = '/';
-  static String get _validatedRootPath => rootPath == '/' ? '' : rootPath;
 
-  static final home = HomeRoute(_validatedRootPath);
-  static final infringement = AnalysisRoute(_validatedRootPath);
+  static final home = HomeRoute();
+  static final analysis = AnalysisRoute();
 
   static final goRouter = GoRouter(
     initialLocation: rootPath,
     routes: [
       home.goRoute,
-      infringement.goRoute,
+      analysis.goRoute,
     ],
   );
 }
 
-class RootRoute {
-  final String _path;
-  final List<RouteBase> routes;
-
-  RootRoute(this._path, this.routes);
-
-  late final GoRoute goRoute = GoRoute(
-    path: _path,
-    routes: routes,
-    redirect: (BuildContext context, GoRouterState state) async {
-      // Redirects the root path to the dashboard
-      if (state.fullPath == AppRoute.rootPath) {
-        return AppRoute.home.path();
-      }
-      // Continue without redirect
-      return null;
-    },
-  );
-}
-
 class HomeRoute {
-  static const String _name = '/';
-  final String _path;
+  final String path = '/';
 
-  final goRoute = GoRoute(
-    path: _name,
+  late final goRoute = GoRoute(
+    path: path,
     builder: (BuildContext context, GoRouterState state) => const MyHomePage(),
   );
-
-  HomeRoute(String parentPath) : _path = '$parentPath/$_name';
-
-  String path() => _path;
 }
 
 class AnalysisRoute {
-  static const String _name = 'analysis';
-  final String _path;
+  final String path = '/analysis';
 
-  final goRoute = GoRoute(
-    path: _name,
-    builder: (BuildContext context, GoRouterState state) => const AnalysisPage(),
+  late final goRoute = GoRoute(
+    path: path,
+    builder: (BuildContext context, GoRouterState state) => const ResultPage(),
   );
-
-  AnalysisRoute(String parentPath) : _path = '$parentPath/$_name';
-
-  String path() => _path;
 }

@@ -9,47 +9,47 @@ part of 'infringement_analysis.dart';
 InfringementAnalysis _$InfringementAnalysisFromJson(
         Map<String, dynamic> json) =>
     InfringementAnalysis(
-      analysisId: json['analysisId'] as String?,
-      patentId: json['patentId'] as String?,
-      companyName: json['companyName'] as String?,
-      analysisDate: json['analysisDate'] as String?,
-      topInfringingProducts: (json['topInfringingProducts'] as List<dynamic>?)
+      analysisId: json['analysis_id'] as String,
+      patentId: json['patent_id'] as String,
+      companyName: json['company_name'] as String,
+      analysisDate: json['analysis_date'] as String,
+      topInfringingProducts: (json['top_infringing_products'] as List<dynamic>?)
           ?.map((e) => TopInfringingProduct.fromJson(e as Map<String, dynamic>))
           .toList(),
-      overallRiskAssessment: json['overallRiskAssessment'] as String?,
+      overallRiskAssessment: json['overall_risk_assessment'] as String,
     );
 
 Map<String, dynamic> _$InfringementAnalysisToJson(
         InfringementAnalysis instance) =>
     <String, dynamic>{
-      'analysisId': instance.analysisId,
-      'patentId': instance.patentId,
-      'companyName': instance.companyName,
-      'analysisDate': instance.analysisDate,
-      'topInfringingProducts': instance.topInfringingProducts,
-      'overallRiskAssessment': instance.overallRiskAssessment,
+      'analysis_id': instance.analysisId,
+      'patent_id': instance.patentId,
+      'company_name': instance.companyName,
+      'analysis_date': instance.analysisDate,
+      'top_infringing_products': instance.topInfringingProducts,
+      'overall_risk_assessment': instance.overallRiskAssessment,
     };
 
 TopInfringingProduct _$TopInfringingProductFromJson(
         Map<String, dynamic> json) =>
     TopInfringingProduct(
-      productName: json['productName'] as String?,
-      infringementLikelihood: json['infringementLikelihood'] as String?,
-      relevantClaims: (json['relevantClaims'] as List<dynamic>?)
-          ?.map((e) => e as String)
+      productName: json['product_name'] as String,
+      infringementLikelihood: json['infringement_likelihood'] as String,
+      relevantClaims: (json['relevant_claims'] as List<dynamic>)
+          .map((e) => e as String)
           .toList(),
-      explanation: json['explanation'] as String?,
-      specificFeatures: (json['specificFeatures'] as List<dynamic>?)
-          ?.map((e) => e as String)
+      explanation: json['explanation'] as String,
+      specificFeatures: (json['specific_features'] as List<dynamic>)
+          .map((e) => e as String)
           .toList(),
     );
 
 Map<String, dynamic> _$TopInfringingProductToJson(
         TopInfringingProduct instance) =>
     <String, dynamic>{
-      'productName': instance.productName,
-      'infringementLikelihood': instance.infringementLikelihood,
-      'relevantClaims': instance.relevantClaims,
+      'product_name': instance.productName,
+      'infringement_likelihood': instance.infringementLikelihood,
+      'relevant_claims': instance.relevantClaims,
       'explanation': instance.explanation,
-      'specificFeatures': instance.specificFeatures,
+      'specific_features': instance.specificFeatures,
     };

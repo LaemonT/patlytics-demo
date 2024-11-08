@@ -14,13 +14,20 @@ class AnalysisBloc extends Cubit<AnalysisState> {
     this._analysisRepo,
   ) : super(AnalysisInitial());
 
-  Future<void> loadInfringementAnalysis() async {
+  Future<void> checkInfringement(
+    String patentId,
+    String companyName,
+  ) async {
     try {
       emit(AnalysisLoading());
-      final response = await _analysisRepo.getInfringementAnalysis();
+      final response = await _analysisRepo.getInfringementAnalysis(
+        patentId,
+        companyName,
+      );
       emit(AnalysisSucceed(response));
     } catch (error, stackTree) {
-      AppLogger.instance.e('Load infringement analysis failed', e: error, st: stackTree);
+      AppLogger.instance
+          .e('Load infringement analysis failed', e: error, st: stackTree);
       emit(AnalysisError(error.toString()));
     }
   }

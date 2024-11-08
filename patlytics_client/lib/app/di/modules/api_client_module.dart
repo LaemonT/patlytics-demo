@@ -9,9 +9,23 @@ class ApiClientModule {
   ApiClientModule._();
 
   static void init(GetIt injector) {
+    injector.registerLazySingleton<Dio>(
+      () => _dioInit(),
+    );
+
+    injector.registerLazySingleton<AnalysisApi>(
+      () => AnalysisApi.create(
+        injector(),
+      ),
+    );
+  }
+
+  static Dio _dioInit() {
     final dio = Dio(
       BaseOptions(
-        baseUrl: 'https://${AppConfig.host}',
+        baseUrl: AppConfig.host.startsWith('localhost')
+            ? 'http://${AppConfig.host}'
+            : 'https://${AppConfig.host}',
       ),
     );
 
@@ -26,14 +40,6 @@ class ApiClientModule {
       );
     }
 
-    injector.registerLazySingleton<Dio>(
-      () => dio,
-    );
-
-    injector.registerLazySingleton<AnalysisApi>(
-      () => AnalysisApi.create(
-        injector(),
-      ),
-    );
+    return dio;
   }
 }

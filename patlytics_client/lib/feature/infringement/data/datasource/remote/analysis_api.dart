@@ -11,5 +11,8 @@ abstract class AnalysisApi {
   factory AnalysisApi.create(Dio dio) = _AnalysisApi;
 
   @GET('/infringement')
-  Future<InfringementAnalysis> getInfringementsAnalysis();
+  Future<InfringementAnalysis> getInfringementsAnalysis(
+    @Query('patentId') String patentId,
+    @Query('companyName') String companyName,
+  );
 }

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:patlytics_client/app/di/injector.dart';
 import 'package:patlytics_client/app/routes/app_routes.dart';
 
 Future<void> main() async {
+  usePathUrlStrategy();
   await AppInjector.init();
   runApp(const MyApp());
 }

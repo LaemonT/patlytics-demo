@@ -9,10 +9,8 @@ class BlocModule {
   static void init(GetIt injector) {
     Bloc.observer = AppBlocObserver();
 
-    injector.registerFactory<AnalysisBloc>(
-      () => AnalysisBloc(
-        injector(),
-      ),
+    injector.registerSingleton<AnalysisBloc>(
+      AnalysisBloc(injector()),
     );
   }
 }

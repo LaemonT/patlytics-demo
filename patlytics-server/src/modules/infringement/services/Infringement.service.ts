@@ -89,7 +89,10 @@ export class InfringementService {
       patentId,
       companyName,
     );
-    if (existingAnalysis != undefined) return existingAnalysis;
+    if (existingAnalysis != undefined) {
+      console.log('Existing cached analysis is returned!');
+      return existingAnalysis;
+    }
 
     // Find the matching patent
     const patent = this.patentRepo.findById(patentId);
@@ -112,6 +115,7 @@ export class InfringementService {
         JSON.stringify(company),
       this.responseSchema,
     );
+    console.log('New analysis is generated.');
     const analysis = JSON.parse(jsonData) as InfringementAnalysis;
 
     // Cache the result for later use to reduce frequent calls to the AI service
