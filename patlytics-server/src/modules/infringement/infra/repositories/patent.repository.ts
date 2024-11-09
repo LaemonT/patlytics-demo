@@ -5,7 +5,7 @@ import { Patent } from '../../model/patent';
 @Injectable()
 export class PatentRepository implements OnModuleInit {
   private readonly filePath =
-    'src/modules/infringement/infra/data/patents.json';
+    'dist/modules/infringement/infra/data/patents.json';
 
   private patents: Patent[];
 

@@ -6,7 +6,7 @@ import Fuse from 'fuse.js';
 @Injectable()
 export class CompanyRepository implements OnModuleInit {
   private readonly filePath =
-    'src/modules/infringement/infra/data/company_products.json';
+    'dist/modules/infringement/infra/data/company_products.json';
 
   private companies: Company[];
 

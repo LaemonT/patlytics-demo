@@ -1,0 +1,28 @@
+networks:
+  patlytics-network:
+    driver: bridge
+
+services:
+
+  nest-server:
+    build:
+      context: ./patlytics-server
+      dockerfile: ./Dockerfile
+    ports:
+      - "5438:5438"
+    environment:
+      - NODE_ENV=production
+      - GEMINI_API_KEY
+    restart: unless-stopped
+    networks:
+      - patlytics-network
+
+  flutter-client:
+    build:
+      context: ./patlytics_client
+      dockerfile: ./Dockerfile
+    ports:
+      - "5487:5487"
+    restart: unless-stopped
+    networks:
+      - patlytics-network

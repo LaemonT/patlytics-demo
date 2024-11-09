@@ -63,6 +63,9 @@ dev_dependencies:
   json_serializable: ^6.8.0
   retrofit_generator: ^9.1.4
 
+  # Launcher icon tool
+  icons_launcher: ^3.0.0
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
