@@ -7,7 +7,7 @@ const MODEL_NAME = 'gemini-1.5-flash';
 export class GoogleAiService {
   private readonly genAi = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
   private readonly systemPrompt =
-    'You are an institution providing patent search, analytics, and competitive insights utilities.';
+    'You are an institution providing patent search, analytics, and competitive insights services. And you should give a detailed over all assessment for your analysis.';
 
   async generateContent(prompt: string, responseSchema?: any): Promise<string> {
     const model = this.genAi.getGenerativeModel({

@@ -39,7 +39,9 @@ class _ResultPageState extends State<ResultPage> {
                 BlocBuilder<AnalysisBloc, AnalysisState>(
                   builder: (context, state) {
                     return switch (state) {
-                      AnalysisSucceed() => _buildAnalysis(state.analysis),
+                      AnalysisSucceed() => state.analysis.topInfringingProducts.isEmpty
+                          ? _buildEmptyResult()
+                          : _buildAnalysis(state.analysis),
                       _ => Container(),
                     };
                   },
@@ -48,6 +50,10 @@ class _ResultPageState extends State<ResultPage> {
             ),
           ),
         ),
+      );
+
+  Widget _buildEmptyResult() => Center(
+        child: Text('No infringement found', style: AppTextStyles.title),
       );
 
   Widget _buildAnalysis(InfringementAnalysis analysis) => Center(
@@ -62,6 +68,7 @@ class _ResultPageState extends State<ResultPage> {
             borderRadius: BorderRadius.circular(16),
           ),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _buildInfringedInfo(analysis),
               const SizedBox(height: 16),
@@ -74,6 +81,9 @@ class _ResultPageState extends State<ResultPage> {
                 ),
                 separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 16),
               ),
+              const SizedBox(height: 16),
+              Text('Overall Risk Assessment:', style: AppTextStyles.subtitle),
+              Text(analysis.overallRiskAssessment, style: AppTextStyles.body),
             ],
           ),
         ),
@@ -81,23 +91,21 @@ class _ResultPageState extends State<ResultPage> {
 
   Widget _buildInfringedInfo(InfringementAnalysis analysis) => Row(
         children: [
-          const Column(
+          Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Patent ID:'),
-              Text('Company Name:'),
-              Text('Overall Risk Assessment:'),
-              Text('Analysis Date:'),
+              Text('Patent ID:', style: AppTextStyles.subtitle),
+              Text('Company Name:', style: AppTextStyles.subtitle),
+              Text('Analysis Date:', style: AppTextStyles.subtitle),
             ],
           ),
           const SizedBox(width: 16),
           Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              Text(analysis.patentId),
-              Text(analysis.companyName),
-              Text(analysis.overallRiskAssessment),
-              Text(analysis.analysisDate),
+              Text(analysis.patentId, style: AppTextStyles.body),
+              Text(analysis.companyName, style: AppTextStyles.body),
+              Text(analysis.analysisDate, style: AppTextStyles.body),
             ],
           ),
         ],
@@ -131,8 +139,8 @@ class _ResultPageState extends State<ResultPage> {
                   _buildExplanation('Explanation', product.explanation),
                   const SizedBox(height: 8),
                   Text(
-                    'Features:',
-                    style: AppTextStyles.body.copyWith(fontWeight: AppFontWeights.bold),
+                    'Infringed Features:',
+                    style: AppTextStyles.subtitle,
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -155,7 +163,7 @@ class _ResultPageState extends State<ResultPage> {
           children: [
             TextSpan(
               text: '$title: ',
-              style: AppTextStyles.body.copyWith(fontWeight: AppFontWeights.bold),
+              style: AppTextStyles.subtitle,
             ),
             TextSpan(
               text: body,
@@ -167,7 +175,7 @@ class _ResultPageState extends State<ResultPage> {
 
   Widget _buildItemRow(String title, String body) => Row(
         children: [
-          Text(title, style: AppTextStyles.body),
+          Text(title, style: AppTextStyles.subtitle),
           const SizedBox(width: 8),
           Text(body, style: AppTextStyles.body),
         ],

@@ -22,6 +22,10 @@ abstract class AppTextStyles {
     fontSize: 15,
   );
 
+  static final subtitle = _bold.copyWith(
+    fontSize: 14,
+  );
+
   static final body = _regular.copyWith(
     fontSize: 14,
   );
