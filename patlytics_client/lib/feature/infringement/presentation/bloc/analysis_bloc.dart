@@ -25,9 +25,8 @@ class AnalysisBloc extends Cubit<AnalysisState> {
         companyName,
       );
       emit(AnalysisSucceed(response));
-    } catch (error, stackTree) {
-      AppLogger.instance
-          .e('Load infringement analysis failed', e: error, st: stackTree);
+    } catch (error, _) {
+      AppLogger.instance.d('Load infringement analysis failed');
       emit(AnalysisError(error.toString()));
     }
   }

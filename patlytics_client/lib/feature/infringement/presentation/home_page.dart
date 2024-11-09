@@ -3,6 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:patlytics_client/app/di/injector.dart';
 import 'package:patlytics_client/app/routes/app_routes.dart';
+import 'package:patlytics_client/core/style/app_text_style.dart';
+import 'package:patlytics_client/core/widget/app_input_field.dart';
+import 'package:patlytics_client/core/widget/app_text_button.dart';
 import 'package:patlytics_client/feature/infringement/presentation/bloc/analysis_bloc.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -16,6 +19,10 @@ class _MyHomePageState extends State<MyHomePage> {
   final patentIdController = TextEditingController(text: 'US-RE49889-E1');
   final companyNameController = TextEditingController(text: 'Walmar');
 
+  // Patent ID must have more than 8 characters
+  // Company name must have more than 2 characters
+  bool get inputCompleted => patentIdController.text.length > 8 && companyNameController.text.length > 2;
+
   @override
   Widget build(BuildContext context) => BlocProvider.value(
       value: AppInjector.instance<AnalysisBloc>(),
@@ -23,7 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
         listener: (context, state) {
           switch (state) {
             case AnalysisSucceed():
-              context.go(AppRoute.analysis.path, extra: state.analysis);
+              context.go(AppRoute.home.analysis.path, extra: state.analysis);
               break;
             case AnalysisError():
               showAdaptiveDialog(
@@ -50,9 +57,9 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  const Text(
+                  Text(
                     'Infringement Analysis',
-                    style: TextStyle(fontSize: 20),
+                    style: AppTextStyles.headline,
                   ),
                   const SizedBox(height: 24),
                   _buildPatentIdInput(),
@@ -61,10 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   const SizedBox(height: 24),
                   BlocBuilder<AnalysisBloc, AnalysisState>(
                     builder: (context, state) => switch (state) {
-                      AnalysisInitial() ||
-                      AnalysisSucceed() ||
-                      AnalysisError() =>
-                        _buildSubmitButton(context, false),
+                      AnalysisInitial() || AnalysisSucceed() || AnalysisError() => _buildSubmitButton(context, false),
                       AnalysisLoading() => _buildSubmitButton(context, true),
                     },
                   ),
@@ -75,24 +79,19 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ));
 
-  Widget _buildPatentIdInput() => TextField(
+  Widget _buildPatentIdInput() => AppInputField(
         controller: patentIdController,
-        decoration: const InputDecoration(
-          labelText: 'Patent ID (Publication Number)',
-          hintText: 'Enter patent ID (publication number)',
-        ),
+        labelText: 'Patent ID (Publication Number)',
+        hintText: 'Enter patent ID (publication number)',
       );
 
-  Widget _buildCompanyNameInput() => TextField(
+  Widget _buildCompanyNameInput() => AppInputField(
         controller: companyNameController,
-        decoration: const InputDecoration(
-          labelText: 'Company Name',
-          hintText: 'Enter company name',
-        ),
+        labelText: 'Company Name',
+        hintText: 'Enter company name',
       );
 
-  Widget _buildSubmitButton(BuildContext context, bool loading) =>
-      IgnorePointer(
+  Widget _buildSubmitButton(BuildContext context, bool loading) => IgnorePointer(
         ignoring: loading,
         child: SizedBox(
           width: double.infinity,
@@ -102,43 +101,19 @@ class _MyHomePageState extends State<MyHomePage> {
               patentIdController,
               companyNameController,
             ]),
-            builder: (context, child) {
-              // Patent ID must have more than 8 characters
-              // Company name must have more than 2 characters
-              final completed = patentIdController.text.length > 8 &&
-                  companyNameController.text.length > 2;
-              return FilledButton(
-                onPressed: completed
-                    ? () {
-                        context.read<AnalysisBloc>().checkInfringement(
-                              patentIdController.text,
-                              companyNameController.text,
-                            );
-                      }
-                    : null,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(loading ? 'Analysing...' : 'Check for Infringement'),
-                    if (loading)
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8),
-                        child: _buildLoadingIndicator(),
-                      ),
-                  ],
-                ),
-              );
-            },
+            builder: (context, child) => AppTextButton(
+              title: loading ? 'Analysing...' : 'Check for Infringement',
+              loading: loading,
+              onPressed: inputCompleted
+                  ? () {
+                      context.read<AnalysisBloc>().checkInfringement(
+                            patentIdController.text,
+                            companyNameController.text,
+                          );
+                    }
+                  : null,
+            ),
           ),
-        ),
-      );
-
-  Widget _buildLoadingIndicator() => const SizedBox(
-        width: 12,
-        height: 12,
-        child: CircularProgressIndicator(
-          color: Colors.white70,
-          strokeWidth: 2,
         ),
       );
 }

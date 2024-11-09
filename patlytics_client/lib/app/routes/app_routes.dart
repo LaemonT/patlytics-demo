@@ -12,13 +12,11 @@ class AppRoute {
   static const rootPath = '/';
 
   static final home = HomeRoute();
-  static final analysis = AnalysisRoute();
 
   static final goRouter = GoRouter(
     initialLocation: rootPath,
     routes: [
       home.goRoute,
-      analysis.goRoute,
     ],
   );
 }
@@ -26,8 +24,13 @@ class AppRoute {
 class HomeRoute {
   final String path = '/';
 
+  final analysis = AnalysisRoute();
+
   late final goRoute = GoRoute(
     path: path,
+    routes: [
+      analysis.goRoute,
+    ],
     builder: (BuildContext context, GoRouterState state) => const MyHomePage(),
   );
 }

@@ -13,4 +13,5 @@ handleError(error) {
       throw Exception('Unknown error');
     }
   }
+  return error;
 }

@@ -13,7 +13,7 @@ class InfringementAnalysis {
   @JsonKey(name: 'analysis_date')
   final String analysisDate;
   @JsonKey(name: 'top_infringing_products')
-  final List<TopInfringingProduct>? topInfringingProducts;
+  final List<TopInfringingProduct> topInfringingProducts;
   @JsonKey(name: 'overall_risk_assessment')
   final String overallRiskAssessment;
 

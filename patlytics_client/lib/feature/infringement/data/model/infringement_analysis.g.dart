@@ -13,8 +13,8 @@ InfringementAnalysis _$InfringementAnalysisFromJson(
       patentId: json['patent_id'] as String,
       companyName: json['company_name'] as String,
       analysisDate: json['analysis_date'] as String,
-      topInfringingProducts: (json['top_infringing_products'] as List<dynamic>?)
-          ?.map((e) => TopInfringingProduct.fromJson(e as Map<String, dynamic>))
+      topInfringingProducts: (json['top_infringing_products'] as List<dynamic>)
+          .map((e) => TopInfringingProduct.fromJson(e as Map<String, dynamic>))
           .toList(),
       overallRiskAssessment: json['overall_risk_assessment'] as String,
     );
