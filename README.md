@@ -19,19 +19,20 @@
 
 ### Installation
 
-Simply runs the following script under the projects directory.
+1. Simply runs the following script under the project directory.
+   ```bash
+   GEMINI_API_KEY=${{YOUR_OWN_KEY}} \
+   docker-compose up --build --detach
+   ```
 
-```bash
-GEMINI_API_KEY=${{YOUR_OWN_KEY}} \
-docker-compose up --build --detach
-```
+2. You are now free to go on [`localhost:5487`](http://localhost:5487)
 
 ---
 
 ## Solution and Analysis
 
-> Based on the assessment, I identified the following stack options. 
-> Given the time restrictions, difficulty, familiarity, and ease of deployment, 
+> Based on the assessment, I identified the following stack options.
+> Given the time restrictions, difficulty, familiarity, and ease of deployment,
 > it's challenging to balance these factors to select the most practical solution and tools.
 
 ### 1. **Frontend + Backend + Self-hosted LLM**
@@ -70,13 +71,12 @@ docker-compose up --build --detach
 
 > #### Flutter + NestJS + Gemini API
 
-Given that this assessment is for a Full Stack Engineer role, 
-I believe showcasing backend development skills is essential for success. 
-I chose frameworks and tools that I am highly familiar with, allowing me to 
+Given that this assessment is for a Full Stack Engineer role,
+I believe showcasing backend development skills is essential for success.
+I chose frameworks and tools that I am highly familiar with, allowing me to
 complete the assessment to a high standard that I can confidently present.
-After evaluating various LLM APIs, I selected the Gemini API for its robust 
-content generation capabilities and free usage tier, which supports efficient 
+After evaluating various LLM APIs, I selected the Gemini API for its robust
+content generation capabilities and free usage tier, which supports efficient
 testing and deployment.
 
 ---
-
