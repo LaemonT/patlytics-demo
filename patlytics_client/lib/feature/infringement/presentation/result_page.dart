@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:patlytics_client/app/di/injector.dart';
 import 'package:patlytics_client/core/style/app_text_style.dart';
+import 'package:patlytics_client/core/widget/app_dialog.dart';
 import 'package:patlytics_client/core/widget/app_text_button.dart';
 import 'package:patlytics_client/feature/infringement/data/model/infringement_analysis.dart';
 import 'package:patlytics_client/feature/infringement/presentation/bloc/analysis_bloc.dart';
@@ -20,36 +21,58 @@ class _ResultPageState extends State<ResultPage> {
   @override
   Widget build(BuildContext context) => BlocProvider.value(
         value: AppInjector.instance<AnalysisBloc>(),
-        child: Scaffold(
-          body: SingleChildScrollView(
-            padding: const EdgeInsets.all(24),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 120),
-                  child: AppTextButton(
-                    title: 'Back',
-                    onPressed: () {
-                      context.pop();
-                    },
-                  ),
-                ),
-                const SizedBox(height: 16),
-                BlocBuilder<AnalysisBloc, AnalysisState>(
-                  builder: (context, state) {
-                    return switch (state) {
-                      AnalysisSucceed() => state.analysis.topInfringingProducts.isEmpty
-                          ? _buildEmptyResult()
-                          : _buildAnalysis(state.analysis),
-                      _ => Container(),
-                    };
-                  },
-                ),
-              ],
+        child: BlocListener<AnalysisBloc, AnalysisState>(
+          listener: (BuildContext context, AnalysisState state) {
+            if (state.errorMessage != null || state.successMessage != null) {
+              AppDialog.showSimple(context, state.errorMessage ?? state.successMessage!);
+            }
+          },
+          child: Scaffold(
+            body: SingleChildScrollView(
+              padding: const EdgeInsets.all(24),
+              child: _buildContent(),
             ),
           ),
         ),
+      );
+
+  Widget _buildContent() => BlocBuilder<AnalysisBloc, AnalysisState>(
+        builder: (context, state) => Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildControlBar(context, state),
+            const SizedBox(height: 16),
+            state.analysis?.topInfringingProducts.isNotEmpty == true
+                ? _buildAnalysis(state.analysis!)
+                : _buildEmptyResult(),
+          ],
+        ),
+      );
+
+  Widget _buildControlBar(BuildContext context, AnalysisState state) => Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 120),
+            child: AppTextButton(
+              title: 'Back',
+              onPressed: () {
+                context.pop();
+              },
+            ),
+          ),
+          if (state.analysis != null && !state.savedAnalysis)
+            ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 150),
+              child: AppTextButton(
+                title: 'Save Result',
+                loading: state.loading,
+                onPressed: () {
+                  context.read<AnalysisBloc>().saveAnalysisResult(state.analysis!);
+                },
+              ),
+            ),
+        ],
       );
 
   Widget _buildEmptyResult() => Center(

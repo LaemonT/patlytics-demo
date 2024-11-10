@@ -26,8 +26,7 @@ class InfringementAnalysis {
     required this.overallRiskAssessment,
   });
 
-  factory InfringementAnalysis.fromJson(Map<String, dynamic> json) =>
-      _$InfringementAnalysisFromJson(json);
+  factory InfringementAnalysis.fromJson(Map<String, dynamic> json) => _$InfringementAnalysisFromJson(json);
 
   Map<String, dynamic> toJson() => _$InfringementAnalysisToJson(this);
 }
@@ -53,8 +52,7 @@ class TopInfringingProduct {
     required this.specificFeatures,
   });
 
-  factory TopInfringingProduct.fromJson(Map<String, dynamic> json) =>
-      _$TopInfringingProductFromJson(json);
+  factory TopInfringingProduct.fromJson(Map<String, dynamic> json) => _$TopInfringingProductFromJson(json);
 
   Map<String, dynamic> toJson() => _$TopInfringingProductToJson(this);
 }

@@ -14,21 +14,24 @@ class AppTextButton extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => FilledButton(
-        onPressed: onPressed,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              title,
-              style: AppTextStyles.body,
-            ),
-            if (loading)
-              Padding(
-                padding: const EdgeInsets.only(left: 8),
-                child: _buildLoadingIndicator(),
+  Widget build(BuildContext context) => IgnorePointer(
+        ignoring: loading,
+        child: FilledButton(
+          onPressed: onPressed,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                title,
+                style: AppTextStyles.body,
               ),
-          ],
+              if (loading)
+                Padding(
+                  padding: const EdgeInsets.only(left: 8),
+                  child: _buildLoadingIndicator(),
+                ),
+            ],
+          ),
         ),
       );
 

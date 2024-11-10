@@ -4,14 +4,15 @@ import Fuse from 'fuse.js';
 
 @Injectable()
 export class AnalysisRepository {
-  private analyses: InfringementAnalysis[] = [];
+  private cachedResult: InfringementAnalysis[] = [];
+  private analysesCollection: { [key: string]: InfringementAnalysis[] } = {};
 
-  saveAnalysis(analysis: InfringementAnalysis) {
-    this.analyses.push(analysis);
+  cacheResult(analysis: InfringementAnalysis) {
+    this.cachedResult.push(analysis);
   }
 
-  searchAnalysis(patentId: string, companyName: string) {
-    return this.analyses.find((item) => {
+  searchCachedResult(patentId: string, companyName: string) {
+    return this.cachedResult.find((item) => {
       // Use fuzzy search for the company name
       const fuse = new Fuse([item.company_name], {
         keys: ['name'],
@@ -25,5 +26,25 @@ export class AnalysisRepository {
         return false;
       }
     });
+  }
+
+  readSavedAnalyses(userId: string) {
+    return this.analysesCollection[userId] ?? [];
+  }
+
+  saveAnalysis(userId: string, analysis: InfringementAnalysis) {
+    let savedAnalyses = this.analysesCollection[userId];
+    if (savedAnalyses == undefined) {
+      savedAnalyses = [analysis];
+    } else {
+      const alreadySaved = savedAnalyses.some(
+        (a) => a.analysis_id == analysis.analysis_id,
+      );
+      if (!alreadySaved) {
+        savedAnalyses.push(analysis);
+      }
+    }
+    this.analysesCollection[userId] = savedAnalyses;
+    return analysis;
   }
 }

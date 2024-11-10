@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 
-abstract class AppFontWeights {
+class AppFontWeights {
+  AppFontWeights._();
   static const bold = FontWeight.w500;
   static const regular = FontWeight.w400;
 }
 
-abstract class AppTextStyles {
+class AppTextStyles {
+  AppTextStyles._();
+
   static const _bold = TextStyle(
     fontWeight: AppFontWeights.bold,
   );

@@ -85,7 +85,7 @@ export class InfringementService {
 
   async analyse(patentId: string, companyName: string) {
     // Search for any existing analysis and return it immediately
-    const existingAnalysis = this.analysisRepo.searchAnalysis(
+    const existingAnalysis = this.analysisRepo.searchCachedResult(
       patentId,
       companyName,
     );
@@ -119,8 +119,16 @@ export class InfringementService {
     const analysis = JSON.parse(jsonData) as InfringementAnalysis;
 
     // Cache the result for later use to reduce frequent calls to the AI service
-    this.analysisRepo.saveAnalysis(analysis);
+    this.analysisRepo.cacheResult(analysis);
 
     return analysis;
+  }
+
+  async savedAnalyses(userId: string) {
+    return this.analysisRepo.readSavedAnalyses(userId);
+  }
+
+  async saveAnalysisResult(userId: string, analysis: InfringementAnalysis) {
+    return this.analysisRepo.saveAnalysis(userId, analysis);
   }
 }

@@ -22,7 +22,7 @@ class _AnalysisApi implements AnalysisApi {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<InfringementAnalysis> getInfringementsAnalysis(
+  Future<InfringementAnalysis> fetchInfringementsAnalysis(
     String patentId,
     String companyName,
   ) async {
@@ -41,6 +41,79 @@ class _AnalysisApi implements AnalysisApi {
         .compose(
           _dio.options,
           '/infringement',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late InfringementAnalysis _value;
+    try {
+      _value = InfringementAnalysis.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<List<InfringementAnalysis>> fetchSavedAnalyses(String userId) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'userId': userId};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<List<InfringementAnalysis>>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/analyses',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<List<dynamic>>(_options);
+    late List<InfringementAnalysis> _value;
+    try {
+      _value = _result.data!
+          .map((dynamic i) =>
+              InfringementAnalysis.fromJson(i as Map<String, dynamic>))
+          .toList();
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<InfringementAnalysis> saveAnalysis(
+    String userId,
+    InfringementAnalysis analysis,
+  ) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'userId': userId};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(analysis.toJson());
+    final _options = _setStreamType<InfringementAnalysis>(Options(
+      method: 'PUT',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/analyses',
           queryParameters: queryParameters,
           data: _data,
         )

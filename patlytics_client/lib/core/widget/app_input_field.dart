@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 
 class AppInputField extends StatelessWidget {
-  final TextEditingController controller;
   final String? labelText, hintText;
+  final TextEditingController? controller;
+  final ValueChanged<String>? onChanged;
 
   const AppInputField({
     super.key,
-    required this.controller,
+    this.controller,
     this.labelText,
     this.hintText,
+    this.onChanged,
   });
 
   @override
@@ -18,5 +20,6 @@ class AppInputField extends StatelessWidget {
           labelText: labelText,
           hintText: hintText,
         ),
+        onChanged: onChanged,
       );
 }

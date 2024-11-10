@@ -11,12 +11,25 @@ class AnalysisRepoImp implements AnalysisRepo {
   );
 
   @override
-  Future<InfringementAnalysis> getInfringementAnalysis(
+  Future<InfringementAnalysis> fetchInfringementAnalysis(
     String patentId,
     String companyName,
   ) {
-    return _apiClient
-        .getInfringementsAnalysis(patentId, companyName)
-        .catchError(handleError);
+    return _apiClient.fetchInfringementsAnalysis(patentId, companyName).catchError(handleError);
+  }
+
+  @override
+  Future<List<InfringementAnalysis>> fetchSavedAnalyses(
+    String userId,
+  ) {
+    return _apiClient.fetchSavedAnalyses(userId).catchError(handleError);
+  }
+
+  @override
+  Future<InfringementAnalysis> saveAnalysisResult(
+    String userId,
+    InfringementAnalysis analysis,
+  ) {
+    return _apiClient.saveAnalysis(userId, analysis).catchError(handleError);
   }
 }
