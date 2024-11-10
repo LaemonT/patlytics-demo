@@ -20,7 +20,7 @@ class SearchForm extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'Infringement Analysis',
+              'Patent Infringement Check',
               style: AppTextStyles.headline,
             ),
             const SizedBox(height: 24),
